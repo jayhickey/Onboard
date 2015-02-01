@@ -29,13 +29,17 @@ static NSString * const kSkipButtonText = @"Skip";
     OnboardingContentViewController *_upcomingPage;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
 
 #pragma mark - Initializing with images
 
 + (instancetype)onboardWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents {
-     OnboardingViewController *onboardingVC = [[self alloc] initWithBackgroundImage:backgroundImage contents:contents];
-     return onboardingVC;
- }
+    OnboardingViewController *onboardingVC = [[self alloc] initWithBackgroundImage:backgroundImage contents:contents];
+    return onboardingVC;
+}
 
 - (instancetype)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents {
     self = [self initWithContents:contents];
@@ -169,6 +173,7 @@ static NSString * const kSkipButtonText = @"Skip";
         self.moviePlayerController.view.frame = _pageVC.view.frame;
         self.moviePlayerController.repeatMode = MPMovieRepeatModeOne;
         self.moviePlayerController.controlStyle = MPMovieControlStyleNone;
+        self.moviePlayerController.scalingMode = MPMovieScalingModeAspectFill;
         
         [_pageVC.view addSubview:self.moviePlayerController.view];
         [_pageVC.view sendSubviewToBack:self.moviePlayerController.view];
@@ -184,7 +189,7 @@ static NSString * const kSkipButtonText = @"Skip";
     
     // if we allow skipping, setup the skip button
     if (self.allowSkipping) {
-        self.skipButton.frame = CGRectMake(CGRectGetMaxX(self.view.frame) - kSkipButtonWidth, CGRectGetMaxY(self.view.frame) - kSkipButtonHeight, kSkipButtonWidth, kSkipButtonHeight);
+        self.skipButton.frame = CGRectMake(CGRectGetMaxX(self.view.frame) - kSkipButtonWidth + 8, kSkipButtonHeight - 16, kSkipButtonWidth, kSkipButtonHeight);
         [self.skipButton setTitle:kSkipButtonText forState:UIControlStateNormal];
         [self.skipButton addTarget:self action:@selector(handleSkipButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.skipButton];

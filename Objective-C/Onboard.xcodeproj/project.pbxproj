@@ -44,6 +44,7 @@
 		27B4BCED19BB5F6E0066EC81 /* purple.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B4BCEC19BB5F6E0066EC81 /* purple.png */; };
 		27B4BCEF19BB60660066EC81 /* coffee.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B4BCEE19BB60660066EC81 /* coffee.png */; };
 		27B4BCF119BB657F0066EC81 /* charcoal.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B4BCF019BB657F0066EC81 /* charcoal.png */; };
+		E507A7101A7DE55800E29DBE /* AYVibrantButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E507A70F1A7DE55800E29DBE /* AYVibrantButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,8 @@
 		27B4BCEC19BB5F6E0066EC81 /* purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purple.png; sourceTree = "<group>"; };
 		27B4BCEE19BB60660066EC81 /* coffee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coffee.png; sourceTree = "<group>"; };
 		27B4BCF019BB657F0066EC81 /* charcoal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = charcoal.png; sourceTree = "<group>"; };
+		E507A70E1A7DE55800E29DBE /* AYVibrantButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYVibrantButton.h; sourceTree = "<group>"; };
+		E507A70F1A7DE55800E29DBE /* AYVibrantButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYVibrantButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +191,7 @@
 		273D50B419A1A34F00E38DB2 /* Onboard */ = {
 			isa = PBXGroup;
 			children = (
+				E507A70D1A7DE55800E29DBE /* AYVibrantButton */,
 				273D50DD19A1A49C00E38DB2 /* OnboardingViewController.h */,
 				273D50DE19A1A49C00E38DB2 /* OnboardingViewController.m */,
 				273D50E019A1A4BF00E38DB2 /* OnboardingContentViewController.h */,
@@ -239,6 +243,15 @@
 				270CB0B419BABF8C00F051B3 /* media */,
 			);
 			name = Demo;
+			sourceTree = "<group>";
+		};
+		E507A70D1A7DE55800E29DBE /* AYVibrantButton */ = {
+			isa = PBXGroup;
+			children = (
+				E507A70E1A7DE55800E29DBE /* AYVibrantButton.h */,
+				E507A70F1A7DE55800E29DBE /* AYVibrantButton.m */,
+			);
+			path = AYVibrantButton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +374,7 @@
 			files = (
 				273D50DF19A1A49C00E38DB2 /* OnboardingViewController.m in Sources */,
 				273D50BF19A1A34F00E38DB2 /* AppDelegate.m in Sources */,
+				E507A7101A7DE55800E29DBE /* AYVibrantButton.m in Sources */,
 				273D50BB19A1A34F00E38DB2 /* main.m in Sources */,
 				273D50E219A1A4BF00E38DB2 /* OnboardingContentViewController.m in Sources */,
 			);

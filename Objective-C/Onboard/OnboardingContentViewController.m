@@ -39,7 +39,7 @@ static CGFloat const kMainPageControlHeight = 35;
 
 - (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action {
     self = [super init];
-
+    
     // hold onto the passed in parameters, and set the action block to an empty block
     // in case we were passed nil, so we don't have to nil-check the block later before
     // calling
@@ -159,9 +159,12 @@ static CGFloat const kMainPageControlHeight = 35;
     
     // create the action button if we were given button text
     if (_buttonText) {
-        _actionButton = [[UIButton alloc] initWithFrame:CGRectMake((CGRectGetMaxX(self.view.frame) / 2) - (contentWidth / 2), CGRectGetMaxY(self.view.frame) - kMainPageControlHeight - kActionButtonHeight - self.bottomPadding, contentWidth, kActionButtonHeight)];
-        _actionButton.titleLabel.font = [UIFont fontWithName:self.buttonFontName size:self.buttonFontSize];
-        [_actionButton setTitle:_buttonText forState:UIControlStateNormal];
+        _actionButton = [[AYVibrantButton alloc] initWithFrame:CGRectMake((CGRectGetMaxX(self.view.frame) / 2) - (contentWidth / 2) + 44, CGRectGetMaxY(self.view.frame) - kMainPageControlHeight - kActionButtonHeight - self.bottomPadding, contentWidth - 88, kActionButtonHeight) style:AYVibrantButtonStyleInvert];
+        _actionButton.vibrancyEffect = nil;
+        _actionButton.backgroundColor = [UIColor whiteColor];
+        
+        _actionButton.font = [UIFont fontWithName:self.buttonFontName size:self.buttonFontSize];
+        _actionButton.text = _buttonText;
         [_actionButton setTitleColor:self.buttonTextColor forState:UIControlStateNormal];
         [_actionButton addTarget:self action:@selector(handleButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_actionButton];

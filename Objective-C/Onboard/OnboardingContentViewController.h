@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AYVibrantButton.h"
 
 @class OnboardingViewController;
 
@@ -20,7 +21,7 @@
     UIImageView *_imageView;
     UILabel *_mainTextLabel;
     UILabel *_subTextLabel;
-    UIButton *_actionButton;
+    AYVibrantButton *_actionButton;
 }
 
 @property (nonatomic, weak) OnboardingViewController *delegate;
