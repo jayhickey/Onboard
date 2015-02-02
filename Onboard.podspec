@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.author       = { "John Hickey" => "johnrhickey@gmail.com" }
   s.social_media_url   = "http://twitter.com/jayhickey"
   s.platform     = :ios
-  s.source       = { :git => "https://github.com/jayhickey/Onboard.git", :head }
+  s.source       = { :git => "https://github.com/jayhickey/Onboard.git", :tag => "2.1.1" }
   s.source_files  = "Objective-C/Onboard/OnboardingViewController.{h,m}", "Objective-C/Onboard/OnboardingContentViewController.{h,m}", "Objective-C/Onboard/AYVibrantButton/AYVibrantButton.{h,m}"
   s.requires_arc = true
 
