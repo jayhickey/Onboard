@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "OnboardingContentViewController.h"
+#import "AYVibrantButton.h"
+
 @import MediaPlayer;
 
 @interface OnboardingViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate>
@@ -22,6 +24,13 @@
 @property (nonatomic) BOOL allowSkipping;
 @property (nonatomic, strong) dispatch_block_t skipHandler;
 
+// Signing up and logging in
+@property (nonatomic, strong) dispatch_block_t signupHandler;
+@property (nonatomic, strong) dispatch_block_t loginHandler;
+@property (nonatomic, strong) UIFont *signupButtonFont;
+@property (nonatomic, strong) UIFont *loginButtonFont;
+@property (nonatomic) BOOL hideSignupAndLoginButtons;
+
 // Swiping
 @property (nonatomic) BOOL swipingEnabled;
 
@@ -31,6 +40,10 @@
 
 // Skip Button
 @property (nonatomic, strong) UIButton *skipButton;
+
+// Login and Signup Buttons
+@property (nonatomic, strong) AYVibrantButton *loginButton;
+@property (nonatomic, strong) AYVibrantButton *signupButton;
 
 // Movie player
 @property (nonatomic) MPMoviePlayerController *moviePlayerController;
@@ -71,6 +84,7 @@
 @property (nonatomic) CGFloat underIconPadding;
 @property (nonatomic) CGFloat underTitlePadding;
 @property (nonatomic) CGFloat bottomPadding;
+@property (nonatomic) CGFloat underPagingPadding;
 
 ////////////////////////////////////////////////////////////////////
 

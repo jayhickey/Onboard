@@ -16,6 +16,7 @@ static CGFloat const kSkipButtonHeight = 44;
 static CGFloat const kBackgroundMaskAlpha = 0.6;
 static CGFloat const kDefaultBlurRadius = 20;
 static CGFloat const kDefaultSaturationDeltaFactor = 1.8;
+static CGFloat const kSignupAndLoginButtonHeight = 50;
 
 static NSString * const kSkipButtonText = @"Skip";
 
@@ -83,6 +84,7 @@ static NSString * const kSkipButtonText = @"Skip";
     self.fadePageControlOnLastPage = NO;
     self.swipingEnabled = YES;
     self.hidePageControl = NO;
+    self.hideSignupAndLoginButtons = NO;
     
     self.allowSkipping = NO;
     self.skipHandler = ^{};
@@ -91,8 +93,14 @@ static NSString * const kSkipButtonText = @"Skip";
     self.pageControl = [UIPageControl new];
     self.skipButton = [UIButton new];
     
+    self.signupButton = [AYVibrantButton new];
+    self.loginButton = [AYVibrantButton new];
+    
     // create the movie player controller
     self.moviePlayerController = [MPMoviePlayerController new];
+    
+    _loginButtonFont = [UIFont systemFontOfSize:12];
+    _signupButtonFont = [UIFont systemFontOfSize:12];
     
     // Handle when the app enters the foreground.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAppEnteredForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
@@ -181,7 +189,7 @@ static NSString * const kSkipButtonText = @"Skip";
     
     // create and configure the the page control
     if (!self.hidePageControl) {
-        self.pageControl.frame = CGRectMake(0, CGRectGetMaxY(self.view.frame) - kPageControlHeight, self.view.frame.size.width, kPageControlHeight);
+        self.pageControl.frame = CGRectMake(0, CGRectGetMaxY(self.view.frame) - kPageControlHeight - self.underPagingPadding, self.view.frame.size.width, kPageControlHeight);
         self.pageControl.numberOfPages = _viewControllers.count;
         self.pageControl.userInteractionEnabled = NO;
         [self.view addSubview:self.pageControl];
@@ -193,6 +201,34 @@ static NSString * const kSkipButtonText = @"Skip";
         [self.skipButton setTitle:kSkipButtonText forState:UIControlStateNormal];
         [self.skipButton addTarget:self action:@selector(handleSkipButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.skipButton];
+    }
+    
+    if (!self.hideSignupAndLoginButtons) {
+        // Setup the signup and login buttons
+        self.loginButton = [[AYVibrantButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.view.frame) - kSignupAndLoginButtonHeight, self.view.frame.size.width/2, kSignupAndLoginButtonHeight) style:AYVibrantButtonStyleFill];
+        self.loginButton.vibrancyEffect = nil;
+        self.loginButton.cornerRadius = 0.0;
+        self.loginButton.backgroundColor = [UIColor whiteColor];
+        self.loginButton.font = _loginButtonFont;
+        self.loginButton.text = @"LOG IN";
+        [self.loginButton setTitleColor:self.buttonTextColor forState:UIControlStateNormal];
+        [self.loginButton addTarget:self action:@selector(handleLoginButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:self.loginButton];
+        
+        self.signupButton = [[AYVibrantButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2, CGRectGetMaxY(self.view.frame) - kSignupAndLoginButtonHeight, self.view.frame.size.width/2, kSignupAndLoginButtonHeight) style:AYVibrantButtonStyleFill];
+        self.signupButton.vibrancyEffect = nil;
+        self.signupButton.cornerRadius = 0.0;
+        self.signupButton.backgroundColor = [UIColor whiteColor];
+        self.signupButton.font = _signupButtonFont;
+        self.signupButton.text = @"SIGN UP";
+        [self.signupButton setTitleColor:self.buttonTextColor forState:UIControlStateNormal];
+        [self.signupButton addTarget:self action:@selector(handleSignupButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:self.signupButton];
+        
+        // Vertical line separator between login and signup buttons
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2, CGRectGetMaxY(self.view.frame) - kSignupAndLoginButtonHeight + 8, 1, kSignupAndLoginButtonHeight - 16)];
+        lineView.backgroundColor = [UIColor blackColor];
+        [self.view addSubview:lineView];
     }
     
     // if we want to fade the transitions, we need to tap into the underlying scrollview
@@ -228,6 +264,15 @@ static NSString * const kSkipButtonText = @"Skip";
     self.skipHandler();
 }
 
+#pragma mark - Signup and Login
+
+- (void)handleLoginButtonPressed {
+    self.loginHandler();
+}
+
+- (void)handleSignupButtonPressed {
+    self.signupHandler();
+}
 
 #pragma mark - Convenience setters for content pages
 
@@ -336,6 +381,17 @@ static NSString * const kSkipButtonText = @"Skip";
     }
 }
 
+- (void)setUnderPagingPadding:(CGFloat)pagingPadding {
+    _underPagingPadding = pagingPadding;
+}
+
+- (void)setSignupButtonFont:(UIFont *)font {
+    _signupButtonFont = font;
+}
+
+- (void)setLoginButtonFont:(UIFont *)font {
+    _loginButtonFont = font;
+}
 
 #pragma mark - Page view controller data source
 
