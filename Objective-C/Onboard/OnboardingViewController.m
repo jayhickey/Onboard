@@ -93,9 +93,6 @@ static NSString * const kSkipButtonText = @"Skip";
     self.pageControl = [UIPageControl new];
     self.skipButton = [UIButton new];
     
-    self.signupButton = [AYVibrantButton new];
-    self.loginButton = [AYVibrantButton new];
-    
     // create the movie player controller
     self.moviePlayerController = [MPMoviePlayerController new];
     
@@ -104,6 +101,7 @@ static NSString * const kSkipButtonText = @"Skip";
     
     // Handle when the app enters the foreground.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAppEnteredForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAppEnteredForeground) name:UIApplicationDidBecomeActiveNotification object:nil];
     
     return self;
 }
@@ -114,6 +112,7 @@ static NSString * const kSkipButtonText = @"Skip";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryAmbient error: nil];
     // now that the view has loaded, we can generate the content
     [self generateView];
 }

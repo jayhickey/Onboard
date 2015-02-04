@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVAudioSession.h>
 #import "OnboardingContentViewController.h"
 #import "AYVibrantButton.h"
 
