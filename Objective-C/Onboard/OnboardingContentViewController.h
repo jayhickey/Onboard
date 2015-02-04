@@ -24,7 +24,7 @@
     AYVibrantButton *_actionButton;
 }
 
-@property (nonatomic, weak) OnboardingViewController *delegate;
+@property (nonatomic) OnboardingViewController *delegate;
 
 @property (nonatomic) BOOL movesToNextViewController;
 
