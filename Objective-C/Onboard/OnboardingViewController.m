@@ -126,6 +126,12 @@ static NSString * const kSkipButtonText = @"Skip";
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    if (self.moviePlayerController.playbackState != MPMoviePlaybackStatePlaying && _videoURL) {
+        [self.moviePlayerController play];
+    }
+}
+
 - (void)generateView {
     // create our page view controller
     _pageVC = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
